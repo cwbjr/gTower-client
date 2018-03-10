@@ -12,11 +12,11 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Level: {{ player_list.level}}</li>
-        <li class="list-group-item">{{ player_list.class}}</li>
-        <li class="list-group-item">{{ player_list.race}}</li>
+        <li class="list-group-item">{{ player_list.profession_id}}</li>
+        <li class="list-group-item">{{ player_list.origin_id}}</li>
       </ul>
       <div class="card-body">
-        <button type="button" class="btn btn-info">{{ btnView}}</button>
+        <button type="submit" class="btn btn-info">{{ btnView}}</button>
       </div>
     </div>
   </div>
@@ -25,13 +25,13 @@
 <script>
 export default {
   name: 'Home',
-  // props: ['player_list'],
-  props: {
-    player_list: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: ['player_list'],
+  // props: {
+  //   player_list: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  // },
   data() {
     return {
       dbURL: 'http://localhost:3000/api/player',
@@ -48,7 +48,6 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.players = data;
-          console.log(data);
         });
     },
   },
@@ -60,5 +59,8 @@ div.home {
   display: flex;
   flex-flow: wrap;
   padding: 40px;
+}
+.card.container {
+  margin: 15px;
 }
 </style>

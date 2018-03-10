@@ -1,5 +1,5 @@
 <template>
-<div class="add-player">
+<div class="update-player">
   <main class="container">
     <div class="alert alert-danger" role="alert" id="errorMsg">
     </div>
@@ -26,19 +26,6 @@
            v-model="player.level">
       </div>
 
-      <!-- <div class="form-group">
-        <label for="profession">Profession</label>
-        <input type="text" class="form-control"
-          name="profession" id="profession" placeholder="Enter a Profession"
-           v-model="player.profession">
-      </div> -->
-
-      <!-- <div class="form-group">
-        <label for="origin">Origin</label>
-        <input type="text" class="form-control"
-          name="origin" id="origin" placeholder="Enter Origin"
-           v-model="player.origin">
-      </div> -->
 <!-- PROFESSION select box ///////////////////////////////////////////////////////-->
       <div class="form-group">
         <label for="profession">Select Profession</label>
@@ -81,16 +68,9 @@
 </template>
 
 <script>
-import service from '@/js/service'
 export default {
   name: 'AddPlayer',
   props: ['origin', 'profession'],
-  // props: {
-  //   player_list: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       db_origin_URL: 'http://localhost:3000/api/origin',
@@ -104,60 +84,58 @@ export default {
     };
   },
   mounted() {
-    service.getPlayersOrigin();
-    service.getPlayersProfession();
-    service.getPlayers();
+    this.getPlayersOrigin();
+    this.getPlayersProfession();
+    this.getPlayers();
   },
   methods: {
-
-  //   getPlayersOrigin() {
-  //     fetch(this.db_origin_URL)
-  //       .then(res => res.json())
-  //       .then((data) => {
-  //         this.playersOrigin = data;
-  //         // console.log(data);
-  //       });
-  //   },
-  //   getPlayersProfession() {
-  //     fetch(this.db_profession_URL)
-  //       .then(res => res.json())
-  //       .then((data) => {
-  //         this.playersProfession = data;
-  //         // console.log(data);
-  //       });
-  //   },
-  //   getPlayers() {
-  //     fetch(this.dbURL)
-  //       .then(res => res.json())
-  //       .then((data) => {
-  //         this.players = data;
-  //         // console.log(data);
-  //       });
-  //   },
-  //   addPlayers() {
-  //     fetch(this.dbURL, {
-  //       method: 'POST',
-  //       headers: {
-  //         'content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify(this.player),
-  //     })
-  //       .then(res => res.json())
-  //       .then(() => {
-  //         // body = {
-  //         //   name: this.player.name,
-  //         //   tagline: this.player.tagline,
-  //         //   level: this.player.level,
-  //         //   profession: this.player.class,
-  //         //   origin: this.player.id,
-  //         //   image: this.player.image,
-  //         // };
-  //         console.log('player', this.player);
-  //       });
-  //   },
-  }
+    getPlayersOrigin() {
+      fetch(this.db_origin_URL)
+        .then(res => res.json())
+        .then((data) => {
+          this.playersOrigin = data;
+          // console.log(data);
+        });
+    },
+    getPlayersProfession() {
+      fetch(this.db_profession_URL)
+        .then(res => res.json())
+        .then((data) => {
+          this.playersProfession = data;
+          // console.log(data);
+        });
+    },
+    getPlayers() {
+      fetch(this.dbURL)
+        .then(res => res.json())
+        .then((data) => {
+          this.players = data;
+          // console.log(data);
+        });
+    },
+    addPlayers() {
+      fetch(this.dbURL, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(this.player),
+      })
+        .then(res => res.json())
+        .then(() => {
+          // body = {
+          //   name: this.player.name,
+          //   tagline: this.player.tagline,
+          //   level: this.player.level,
+          //   profession: this.player.class,
+          //   origin: this.player.id,
+          //   image: this.player.image,
+          // };
+          console.log('player', this.player);
+        });
+    },
+  },
 };
-
 </script>
 
 <style scoped>

@@ -22,8 +22,9 @@ export default {
     PlayersList,
     AddPlayer,
   },
+  props: ['player_list'],
   // props: {
-  //   player: {
+  //   player_list: {
   //     type: Object,
   //     required: true,
   //   },
@@ -43,7 +44,7 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.players = data;
-          console.log(data);
+          // console.log(data);
         });
     },
   },
