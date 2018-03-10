@@ -59,7 +59,8 @@
          v-model="player.image">
       </div>
       <div class="card-body">
-        <button type="submit" class="btn btn-info">{{ btnAdd }}</button>
+        <button type="submit" class="btn btn-warning"
+          v-on:click="updatePlayers(player.id)">Update Player</button>
       </div>
     </form>
 
@@ -79,7 +80,6 @@ export default {
       playersOrigin: [],
       playersProfession: [],
       players: [],
-      btnAdd: 'Add Player',
       player: {},
     };
   },
@@ -113,25 +113,17 @@ export default {
           // console.log(data);
         });
     },
-    addPlayers() {
-      fetch(this.dbURL, {
-        method: 'POST',
+    updatePlayers(id) {
+      fetch(`${this.dbURL}/${id}`, {
+        method: 'PUT',
         headers: {
           'content-type': 'application/json',
         },
         body: JSON.stringify(this.player),
       })
         .then(res => res.json())
-        .then(() => {
-          // body = {
-          //   name: this.player.name,
-          //   tagline: this.player.tagline,
-          //   level: this.player.level,
-          //   profession: this.player.class,
-          //   origin: this.player.id,
-          //   image: this.player.image,
-          // };
-          console.log('player', this.player);
+        .then((successful) => {
+          this.message = successful ? 'Updated' : 'Not Updated!!!';
         });
     },
   },

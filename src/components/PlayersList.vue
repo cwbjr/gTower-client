@@ -26,12 +26,13 @@
           <th scope="row">{{ player.id }}</th>
           <td>{{ player.name }}</td>
           <td>{{ player.level }}</td>
-          <td value="profession_id">{{ player.profession_id }}</td>
+          <td>{{ player.profession }}</td>
           <td>{{ player.origin }}</td>
-          <!-- <td><button type="submit" class="btn btn-info">Update</button></td> -->
-          <td><a class="nav-item nav-link" href="/update-player">Update</a></td>
-          <!-- <td><button type="submit" class="btn btn-info">Delete</button></td> -->
-          <td><a class="nav-item nav-link" href="" v-on:click="deletePlayer(player.id)">Delete</a></td>
+          <td><a class="nav-item nav-link bg-success"
+            href="/update-player">Update</a></td>
+
+          <td><button type="button" class="btn btn-danger"
+            v-on:click="deletePlayer(player.id)">Delete</button></td>
 
         </tr>
       </tbody>
@@ -47,16 +48,11 @@
 </template>
 
 <script>
-import service from '@/js/service'
+import service from '@/js/service';
+
 export default {
   name: 'PlayersList',
   props: ['player_list', 'player'],
-  // props: {
-  //   player_list: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       dbURL: 'http://localhost:3000/api/player',
@@ -66,53 +62,40 @@ export default {
   },
   mounted() {
     service.getPlayers()
-    .then(data => {
-      this.players = data;
-      return Promise.all([this.cacheOrigins(), this.cacheProfession()])
-    })
-    .then(this.resolveLookups)
+      .then((data) => {
+        this.players = data;
+        return Promise.all([this.cacheOrigins(), this.cacheProfession()]);
+      })
+      .then(this.resolveLookups);
   },
   methods: {
     resolveLookups() {
-      const {origins, professions} = service;
-      // console.log('origins', origins);
-      const players = this.players.map(player => {
-        const origin = origins.find(o => {
-          // console.log('origin', o.race, 'player', player.origin_id);
-          return o != undefined && o.id === player.origin_id
-        });
-        // const origin = origins.find(o => {
-        // //   console.log('origin', o.race, 'player', player.origin_id);
-        //   return o != undefined && o.id === player.origin_id
-        // });
-        this.$set(player, 'origin', origin && origin.race || 'WTF');
-        // this.$set(player, 'profession', origin && origin.race || 'WTF');
+      const {
+        origins,
+        professions,
+      } = service;
+      this.players.map((player) => {
+        const origin = origins.find(o => o !== undefined && o.id === player.origin_id);
+        const profession = professions.find(p => p !== undefined && p.id === player.profession_id);
+        this.$set(player, 'origin', origin && origin.race);
+        this.$set(player, 'profession', profession && profession.class);
         return player;
       });
-      // this.$set(this, 'players', players);
       console.log('this.players', this.players);
-
     },
     cacheProfession() {
-      return service.getPlayersProfession()
-      // .then(professions => {
-      //   this.professions = professions
-      //   console.log('professions', professions);
-      // })
+      return service.getPlayersProfession();
     },
     cacheOrigins() {
-      return service.getPlayersOrigin()
-      // .then(origins => {
-      //   this.origins = origins
-      //   console.log('origins', origins);
-      // })
+      return service.getPlayersOrigin();
     },
     deletePlayer(id) {
-      fetch(this.dbURL + '/' + id, {method: 'DELETE'})
+      fetch(`${this.dbURL}/${id}`, {
+        method: 'DELETE',
+      })
         .then(res => res.ok)
-        .then(successful => {
-          this.message = successful ? 'Deleted' : 'Not deleted!!!'
-          // console.log(data);
+        .then((successful) => {
+          this.message = successful ? 'Deleted' : 'Not deleted!!!';
         });
     },
   },
@@ -120,31 +103,38 @@ export default {
 </script>
 
 <style scoped>
-.card.container {
-  padding: 0;
-}
-.card, .button-add {
-  width: 50rem;
-  margin: 40px auto;
-}
-.nav a {
-  background-color: #72B0D6;
-  color: white;
-}
-.nav a:hover {
-  background-color:  #0457C7;
-}
-a {
-  background-color: #72B0D6;
-  color: white;
-  display: inline-block;
-  padding: .375rem .75rem;
-  border-radius: 5px;
-}
-td {
-  vertical-align: inherit;
-}
-table {
-  margin-bottom: 0;
-}
+  .card.container {
+    padding: 0;
+  }
+
+  .card,
+  .button-add {
+    width: 50rem;
+    margin: 40px auto;
+  }
+
+  .nav a {
+    background-color: #72B0D6;
+    color: white;
+  }
+
+  .nav a:hover {
+    background-color: #0457C7;
+  }
+
+  a {
+    background-color: #72B0D6;
+    color: white;
+    display: inline-block;
+    padding: .375rem .75rem;
+    border-radius: 5px;
+  }
+
+  td {
+    vertical-align: inherit;
+  }
+
+  table {
+    margin-bottom: 0;
+  }
 </style>

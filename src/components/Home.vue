@@ -1,31 +1,31 @@
 <template>
-  <div class="home">
-    <div class="card container" style="width: 18rem;"
-    :player="player_list"
-    v-for="player_list in players"
-    :key="player_list.id"
-    >
-      <img class="card-img-top" :src="player_list.image" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{ player_list.name}}</h5>
-        <p class="card-text">{{ player_list.tagline}}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Level: {{ player_list.level}}</li>
-        <li class="list-group-item">{{ player_list.profession_id}}</li>
-        <li class="list-group-item">{{ player_list.origin_id}}</li>
-      </ul>
-      <div class="card-body">
-        <button type="submit" class="btn btn-info">{{ btnView}}</button>
-      </div>
+<div class="home">
+  <div class="card container" style="width: 18rem;"
+    :player="player_list" v-for="player_list in players"
+    :key="player_list.id">
+    <img class="card-img-top" :src="player_list.image" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ player_list.name}}</h5>
+      <p class="card-text">{{ player_list.tagline}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Level: {{ player_list.level}}</li>
+      <li class="list-group-item">{{ player_list.profession }}</li>
+      <li class="list-group-item">{{ player_list.origin }}</li>
+    </ul>
+    <div class="card-body">
+      <button type="submit" class="btn btn-info">{{ btnView}}</button>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import service from '@/js/service';
+
 export default {
   name: 'Home',
-  props: ['player_list'],
+  props: ['player_list', 'player'],
   // props: {
   //   player_list: {
   //     type: Object,
@@ -40,7 +40,12 @@ export default {
     };
   },
   mounted() {
-    this.getPlayers();
+    service.getPlayers()
+      .then((data) => {
+        this.players = data;
+        return Promise.all([this.cacheOrigins(), this.cacheProfession()]);
+      })
+      .then(this.resolveLookups);
   },
   methods: {
     getPlayers() {
@@ -49,6 +54,38 @@ export default {
         .then((data) => {
           this.players = data;
         });
+    },
+    resolveLookups() {
+      const {
+        origins,
+        professions,
+      } = service;
+      // console.log('origins', origins);
+      this.players.map((player) => {
+        const origin = origins.find(o => o !== undefined && o.id === player.origin_id);
+
+        const profession = professions.find(p => p !== undefined && p.id === player.profession_id);
+
+        this.$set(player, 'origin', origin && origin.race);
+
+        this.$set(player, 'profession', profession && profession.class);
+        return player;
+      });
+      // console.log('this.players', this.players);
+    },
+    cacheProfession() {
+      return service.getPlayersProfession();
+      // .then(professions => {
+      //   this.professions = professions
+      //   console.log('professions', professions);
+      // })
+    },
+    cacheOrigins() {
+      return service.getPlayersOrigin();
+      // .then(origins => {
+      //   this.origins = origins
+      //   console.log('origins', origins);
+      // })
     },
   },
 };
@@ -60,6 +97,7 @@ div.home {
   flex-flow: wrap;
   padding: 40px;
 }
+
 .card.container {
   margin: 15px;
 }

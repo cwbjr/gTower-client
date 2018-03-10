@@ -18,10 +18,19 @@ const service = {
       .then(res => res.json())
       .then((data) => {
         this.professions = data;
-        console.log('service.professions', data);
+        // console.log('service.professions', data);
         return data;
       });
   },
+  // getAllPlayers() {
+  //   return fetch(this.dbURL)
+  //     .then(res => res.json())
+  //     .then((data) => {
+  //       this.players = data;
+  //       return Promise.all([this.cacheOrigins(), this.cacheProfession()]);
+  //     })
+  //     .then(this.resolveLookups);
+  // },
   getPlayers() {
     return fetch(this.dbURL)
       .then(res => res.json());
