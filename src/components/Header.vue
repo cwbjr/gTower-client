@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="/">Campaign Chat</a>
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href="/players">Players</a>
-      <!-- <a class="nav-link" href="/players">Players</a> -->
+      <a class="nav-link" href="/PolarChart">Chart</a>
     </nav>
   </div>
 </template>

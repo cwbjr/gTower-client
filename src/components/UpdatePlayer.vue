@@ -1,36 +1,29 @@
 <template>
 <div class="update-player">
   <main class="container">
-    <div class="alert alert-danger" role="alert" id="errorMsg">
+    <div class="alert alert-danger" role="alert" id="message">{{ message }}
     </div>
-    <form @submit.prevent="addPlayers">
+    <form @submit.prevent="updatePlayers">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control"
-          name="name" id="name" placeholder="Enter Name"
-          v-model="player.name">
+          name="name" id="name" placeholder="Enter Name" v-model="player.name">
       </div>
-
       <div class="form-group">
         <label for="tagline">Tagline</label>
         <textarea type="text" class="form-control"
-          name="tagline" id="tagline"
-          placeholder="Enter a Tagline" v-model="player.tagline">
+          name="tagline" id="tagline" placeholder="Enter a Tagline" v-model="player.tagline">
         </textarea>
       </div>
-
       <div class="form-group">
         <label for="level">Level</label>
         <input type="Number" class="form-control"
-          name="level" id="level" placeholder="Enter a Profession"
-           v-model="player.level">
+          name="level" id="level" placeholder="Enter a Profession" v-model="player.level">
       </div>
-
-<!-- PROFESSION select box ///////////////////////////////////////////////////////-->
       <div class="form-group">
         <label for="profession">Select Profession</label>
-        <select class="form-control" id="profession" name="profession"
-          v-model="player.profession_id">
+        <select class="form-control" id="profession"
+          name="profession" v-model="player.profession_id">
           <option :profession="profession"
             v-for="profession in playersProfession"
             :key="profession.id"
@@ -39,8 +32,6 @@
           </option>
         </select>
       </div>
-
-<!-- ORIGIN select box ///////////////////////////////////////////////////////////-->
       <div class="form-group">
         <label for="race">Select Origin</label>
         <select class="form-control" id="race" name="race"
@@ -52,25 +43,23 @@
           </option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="image">Image</label>
-        <input type="url" class="form-control" name="image" id="image" placeholder="http://yourImage.com/image.png"
-         v-model="player.image">
+        <input type="url" class="form-control" name="image" id="image" placeholder="http://yourImage.com/image.png" v-model="player.image">
       </div>
       <div class="card-body">
         <button type="submit" class="btn btn-warning"
-          v-on:click="updatePlayers(player.id)">Update Player</button>
+          v-on:click="updatePlayers(player.id)">Update Player
+        </button>
       </div>
     </form>
-
   </main>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'AddPlayer',
+  name: 'UpdatePlayer',
   props: ['origin', 'profession'],
   data() {
     return {
@@ -81,12 +70,13 @@ export default {
       playersProfession: [],
       players: [],
       player: {},
+      message: '',
     };
   },
   mounted() {
     this.getPlayersOrigin();
     this.getPlayersProfession();
-    this.getPlayers();
+    this.getPlayers(this.$route.params.id);
   },
   methods: {
     getPlayersOrigin() {
@@ -94,7 +84,6 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.playersOrigin = data;
-          // console.log(data);
         });
     },
     getPlayersProfession() {
@@ -102,19 +91,17 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.playersProfession = data;
-          // console.log(data);
         });
     },
-    getPlayers() {
-      fetch(this.dbURL)
+    getPlayers(id) {
+      fetch(`${this.dbURL}/${id}`)
         .then(res => res.json())
         .then((data) => {
-          this.players = data;
-          // console.log(data);
+          this.player = data;
         });
     },
-    updatePlayers(id) {
-      fetch(`${this.dbURL}/${id}`, {
+    updatePlayers() {
+      fetch(`${this.dbURL}/${this.player.id}`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
@@ -124,6 +111,8 @@ export default {
         .then(res => res.json())
         .then((successful) => {
           this.message = successful ? 'Updated' : 'Not Updated!!!';
+        }).then(() => {
+          window.location = '/';
         });
     },
   },
@@ -140,6 +129,6 @@ export default {
   color: white;
 }
 .nav a:hover {
-  background-color:  #0457C7;
+  background-color: #0457C7;
 }
 </style>

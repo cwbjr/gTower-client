@@ -4,6 +4,7 @@ import Home from '@/components/Home';
 import PlayersList from '@/components/PlayersList';
 import AddPlayer from '@/components/AddPlayer';
 import UpdatePlayer from '@/components/UpdatePlayer';
+import PolarChart from '@/components/PolarChart';
 
 Vue.use(Router);
 
@@ -26,9 +27,14 @@ export default new Router({
       component: AddPlayer,
     },
     {
-      path: '/update-player',
+      path: '/update-player/:id',
       name: 'UpdatePlayer',
       component: UpdatePlayer,
+    },
+    {
+      path: '/PolarChart',
+      name: 'PolarChart',
+      component: PolarChart,
     },
   ],
 });

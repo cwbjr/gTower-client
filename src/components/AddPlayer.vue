@@ -117,7 +117,10 @@ export default {
         },
         body: JSON.stringify(this.player),
       })
-        .then(res => res.json());
+        .then(res => res.json())
+        .then(() => {
+          window.location = '/players';
+        });
     },
   },
 };

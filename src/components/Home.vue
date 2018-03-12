@@ -26,12 +26,6 @@ import service from '@/js/service';
 export default {
   name: 'Home',
   props: ['player_list', 'player'],
-  // props: {
-  //   player_list: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       dbURL: 'http://localhost:3000/api/player',
@@ -60,32 +54,19 @@ export default {
         origins,
         professions,
       } = service;
-      // console.log('origins', origins);
       this.players.map((player) => {
         const origin = origins.find(o => o !== undefined && o.id === player.origin_id);
-
         const profession = professions.find(p => p !== undefined && p.id === player.profession_id);
-
         this.$set(player, 'origin', origin && origin.race);
-
         this.$set(player, 'profession', profession && profession.class);
         return player;
       });
-      // console.log('this.players', this.players);
     },
     cacheProfession() {
       return service.getPlayersProfession();
-      // .then(professions => {
-      //   this.professions = professions
-      //   console.log('professions', professions);
-      // })
     },
     cacheOrigins() {
       return service.getPlayersOrigin();
-      // .then(origins => {
-      //   this.origins = origins
-      //   console.log('origins', origins);
-      // })
     },
   },
 };
@@ -97,7 +78,6 @@ div.home {
   flex-flow: wrap;
   padding: 40px;
 }
-
 .card.container {
   margin: 15px;
 }

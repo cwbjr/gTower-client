@@ -9,7 +9,6 @@ const service = {
       .then(res => res.json())
       .then((data) => {
         this.origins = data;
-        // console.log(data);
         return data;
       });
   },
@@ -18,26 +17,12 @@ const service = {
       .then(res => res.json())
       .then((data) => {
         this.professions = data;
-        // console.log('service.professions', data);
         return data;
       });
   },
-  // getAllPlayers() {
-  //   return fetch(this.dbURL)
-  //     .then(res => res.json())
-  //     .then((data) => {
-  //       this.players = data;
-  //       return Promise.all([this.cacheOrigins(), this.cacheProfession()]);
-  //     })
-  //     .then(this.resolveLookups);
-  // },
   getPlayers() {
     return fetch(this.dbURL)
       .then(res => res.json());
-    // .then((data) => {
-    // this.players = data;
-    // console.log(data);
-    // });
   },
   addPlayers() {
     return fetch(this.dbURL, {
@@ -48,10 +33,6 @@ const service = {
       body: JSON.stringify(this.player),
     })
       .then(res => res.json());
-    // .then(() => {
-
-    // console.log('player', this.player);
-    // });
   },
 };
 

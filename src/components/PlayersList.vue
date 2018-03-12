@@ -28,9 +28,10 @@
           <td>{{ player.level }}</td>
           <td>{{ player.profession }}</td>
           <td>{{ player.origin }}</td>
-          <td><a class="nav-item nav-link bg-success"
-            href="/update-player">Update</a></td>
-
+          <td><router-link
+            :to="{ name: 'UpdatePlayer', params: { id: player.id}}">
+            Update
+          </router-link></td>
           <td><button type="button" class="btn btn-danger"
             v-on:click="deletePlayer(player.id)">Delete</button></td>
 
@@ -70,10 +71,7 @@ export default {
   },
   methods: {
     resolveLookups() {
-      const {
-        origins,
-        professions,
-      } = service;
+      const { origins, professions } = service;
       this.players.map((player) => {
         const origin = origins.find(o => o !== undefined && o.id === player.origin_id);
         const profession = professions.find(p => p !== undefined && p.id === player.profession_id);
@@ -81,7 +79,7 @@ export default {
         this.$set(player, 'profession', profession && profession.class);
         return player;
       });
-      console.log('this.players', this.players);
+      // console.log('this.players', this.players);
     },
     cacheProfession() {
       return service.getPlayersProfession();
@@ -96,6 +94,8 @@ export default {
         .then(res => res.ok)
         .then((successful) => {
           this.message = successful ? 'Deleted' : 'Not deleted!!!';
+        }).then(() => {
+          window.location = '/players';
         });
     },
   },
