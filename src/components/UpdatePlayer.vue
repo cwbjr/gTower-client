@@ -112,7 +112,7 @@ export default {
         .then((successful) => {
           this.message = successful ? 'Updated' : 'Not Updated!!!';
         }).then(() => {
-          window.location = '/';
+          window.location = '/players';
         });
     },
   },

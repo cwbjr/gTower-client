@@ -1,6 +1,6 @@
 <template>
-  <div class="polar-chart container">
-    <div v-if="chartData">
+  <div class="container">
+    <div class="polar-chart can" v-if="chartData">
       <vue-chart type="polarArea" :data="chartData"></vue-chart>
     </div>
   </div>
@@ -34,13 +34,14 @@ export default {
             labels: [],
             datasets: [
               {
-                label: 'Component 1',
-                backgroundColor: ['blue', 'green', 'orange'],
+                label: 'Player Chart',
+                backgroundColor: [],
                 data: [],
               },
             ],
           };
           data.forEach((info) => {
+            chartData.datasets[0].backgroundColor.push('blue', 'green', 'orange', 'purple', 'red', 'yellow');
             chartData.labels.push(info.name);
             chartData.datasets[0].data.push(info.level);
           });
@@ -51,10 +52,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .polar-chart {
-  max-width: 1024px;
-  min-width: 460px;
+  max-width: 1248px;
+  min-width: 720px;
   margin: 75px auto;
+}
+canvas div {
+  font-size: 20rem;
 }
 </style>

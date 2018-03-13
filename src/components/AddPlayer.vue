@@ -10,21 +10,17 @@
           name="name" id="name" placeholder="Enter Name"
           v-model="player.name">
       </div>
-
       <div class="form-group">
         <label for="tagline">Tagline</label>
         <textarea type="text" class="form-control" name="tagline"
           id="tagline" placeholder="Enter a Tagline" v-model="player.tagline">
         </textarea>
       </div>
-
       <div class="form-group">
         <label for="level">Level</label>
         <input type="Number" class="form-control" name="level"
           id="level" placeholder="Enter Level" v-model="player.level">
       </div>
-
-      <!-- PROFESSION select box ///////////////////////////////////////////////////////-->
       <div class="form-group">
         <label for="profession">Select Profession</label>
         <select class="form-control" id="profession" name="profession"
@@ -37,8 +33,6 @@
           </option>
         </select>
       </div>
-
-      <!-- ORIGIN select box ///////////////////////////////////////////////////////////-->
       <div class="form-group">
         <label for="race">Select Origin</label>
         <select class="form-control" id="race" name="race" v-model="player.origin_id">
@@ -49,7 +43,6 @@
           </option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="image">Image</label>
         <input type="url" class="form-control" name="image" id="image" placeholder="http://yourImage.com/image.png" v-model="player.image">
@@ -58,7 +51,6 @@
         <button type="submit" class="btn btn-info">Add Player</button>
       </div>
     </form>
-
   </main>
 </div>
 </template>
@@ -90,7 +82,6 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.playersOrigin = data;
-          // console.log(data);
         });
     },
     getPlayersProfession() {
@@ -98,7 +89,6 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.playersProfession = data;
-          // console.log(data);
         });
     },
     getPlayers() {
@@ -106,7 +96,6 @@ export default {
         .then(res => res.json())
         .then((data) => {
           this.players = data;
-          // console.log(data);
         });
     },
     addPlayers() {
@@ -131,28 +120,11 @@ export default {
   width: 50rem;
   margin: 40px auto;
 }
-
 .nav a {
   background-color: #72B0D6;
   color: white;
 }
-
 .nav a:hover {
   background-color: #0457C7;
 }
 </style>
-
-
-      <!-- <div class="form-group">
-        <label for="profession">Profession</label>
-        <input type="text" class="form-control"
-          name="profession" id="profession" placeholder="Enter a Profession"
-           v-model="player.profession">
-      </div> -->
-
-      <!-- <div class="form-group">
-        <label for="origin">Origin</label>
-        <input type="text" class="form-control"
-          name="origin" id="origin" placeholder="Enter Origin"
-           v-model="player.origin">
-      </div> -->

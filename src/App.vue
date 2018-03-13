@@ -12,7 +12,6 @@ import Footer from '@/components/Footer';
 import Home from '@/components/Home';
 import PlayersList from '@/components/PlayersList';
 import AddPlayer from '@/components/AddPlayer';
-// import VueChart from 'vue-chart-js';
 
 export default {
   name: 'App',
@@ -22,7 +21,6 @@ export default {
     Home,
     PlayersList,
     AddPlayer,
-    // VueChart,
   },
   props: ['player_list'],
   data() {

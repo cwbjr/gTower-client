@@ -34,7 +34,6 @@
           </router-link></td>
           <td><button type="button" class="btn btn-danger"
             v-on:click="deletePlayer(player.id)">Delete</button></td>
-
         </tr>
       </tbody>
     </table>
@@ -79,7 +78,6 @@ export default {
         this.$set(player, 'profession', profession && profession.class);
         return player;
       });
-      // console.log('this.players', this.players);
     },
     cacheProfession() {
       return service.getPlayersProfession();
@@ -106,22 +104,18 @@ export default {
   .card.container {
     padding: 0;
   }
-
   .card,
   .button-add {
     width: 50rem;
     margin: 40px auto;
   }
-
   .nav a {
     background-color: #72B0D6;
     color: white;
   }
-
   .nav a:hover {
     background-color: #0457C7;
   }
-
   a {
     background-color: #72B0D6;
     color: white;
@@ -129,11 +123,9 @@ export default {
     padding: .375rem .75rem;
     border-radius: 5px;
   }
-
   td {
     vertical-align: inherit;
   }
-
   table {
     margin-bottom: 0;
   }
