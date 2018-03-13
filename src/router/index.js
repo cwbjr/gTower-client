@@ -32,7 +32,7 @@ export default new Router({
       component: UpdatePlayer,
     },
     {
-      path: '/PolarChart',
+      path: '/polar-chart',
       name: 'PolarChart',
       component: PolarChart,
     },
