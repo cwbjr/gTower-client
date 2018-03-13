@@ -18,7 +18,7 @@ export default {
     return {
       chartData: null,
       players: [],
-      dbURL: 'https://g-tower-server.herokuapp.com/api/player',
+      dbURL: 'https://g-tower-server.herokuapp.com',
     };
   },
   mounted() {

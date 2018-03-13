@@ -61,9 +61,9 @@ export default {
   props: ['origin', 'profession'],
   data() {
     return {
-      db_origin_URL: 'https://g-tower-server.herokuapp.com/api/origin',
-      db_profession_URL: 'https://g-tower-server.herokuapp.com/api/profession',
-      dbURL: 'https://g-tower-server.herokuapp.com/api/player',
+      db_origin_URL: 'https://g-tower-server.herokuapp.com',
+      db_profession_URL: 'https://g-tower-server.herokuapp.com',
+      dbURL: 'https://g-tower-server.herokuapp.com',
       playersOrigin: [],
       playersProfession: [],
       players: [],
