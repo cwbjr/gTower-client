@@ -1,10 +1,18 @@
 <template>
   <div class="header">
     <nav class="navbar sticky-top navbar-light bg-light">
-      <a class="navbar-brand" href="/">Campaign Chat</a>
-      <a class="nav-link" href="/">Home</a>
-      <a class="nav-link" href="/players">Players</a>
-      <a class="nav-link" href="/PolarChart">Chart</a>
+      <router-link class="nav-link" :to="{ name: 'home'}">
+        Campaign Chat
+      </router-link>
+      <router-link class="nav-link" :to="{ name: 'home'}">
+        Home
+      </router-link>
+      <router-link class="nav-link" :to="{ name: 'players'}">
+        Players
+      </router-link>
+      <router-link class="nav-link" :to="{ name: 'PolarChart'}">
+        Chart
+      </router-link>
     </nav>
   </div>
 </template>
