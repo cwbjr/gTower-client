@@ -13,7 +13,7 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">name</th>
+          <th scope="col">Name</th>
           <th scope="col">Level</th>
           <th scope="col">Class</th>
           <th scope="col">Race</th>
