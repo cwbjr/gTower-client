@@ -55,7 +55,7 @@ export default {
   props: ['player_list', 'player'],
   data() {
     return {
-      dbURL: 'http://localhost:3000/api/player',
+      dbURL: 'https://g-tower-server.herokuapp.com/api/player',
       players: {},
       message: '',
     };

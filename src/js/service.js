@@ -1,8 +1,8 @@
 
 const service = {
-  db_origin_URL: 'http://localhost:3000/api/origin',
-  db_profession_URL: 'http://localhost:3000/api/profession',
-  dbURL: 'http://localhost:3000/api/player',
+  db_origin_URL: 'https://g-tower-server.herokuapp.com/api/origin',
+  db_profession_URL: 'https://g-tower-server.herokuapp.com/api/profession',
+  dbURL: 'https://g-tower-server.herokuapp.com/api/player',
 
   getPlayersOrigin() {
     return fetch(this.db_origin_URL)
