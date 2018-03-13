@@ -15,7 +15,7 @@
       <li class="list-group-item">{{ player_list.origin }}</li>
     </ul>
     <div class="card-body">
-      <button type="submit" class="btn btn-info">{{ btnView}}</button>
+      <!-- <button type="submit" class="btn btn-info">{{ btnView}}</button> -->
     </div>
   </div>
 </div>
