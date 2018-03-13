@@ -3,7 +3,8 @@
   <div class="card container" style="width: 18rem;"
     :player="player_list" v-for="player_list in players"
     :key="player_list.id">
-    <img class="card-img-top" :src="player_list.image" alt="Card image cap">
+    <img class="card-img-top img-fluid" :src="player_list.image"
+      alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{ player_list.name}}</h5>
       <p class="card-text">{{ player_list.tagline}}</p>
@@ -80,5 +81,6 @@ div.home {
 }
 .card.container {
   margin: 15px;
+  min-width: 18rem;
 }
 </style>
