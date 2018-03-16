@@ -2,6 +2,21 @@
 
 > A Vue.js project
 
+## Galvanize Tower
+
+In this project, you'll build a full-stack application that has an API, reads and writes data, and uses a library. The topic is up to you!
+
+Links:
+
+[Firebase Client](https://tower-client.firebaseapp.com/),
+
+[Heroku server](https://g-tower-server.herokuapp.com/api/player),
+
+[Client Code](https://github.com/cwbjr/gTower-client)
+
+[Server Code](https://github.com/cwbjr/gTower-server/tree/master)
+
+
 ## Build Setup
 
 ``` bash
