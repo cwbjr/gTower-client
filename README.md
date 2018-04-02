@@ -8,7 +8,7 @@ In this project, you'll build a full-stack application that has an API, reads an
 
 Links:
 
-[Firebase Client](https://tower-client.firebaseapp.com/),
+[Campaign Chat](https://tower-client.firebaseapp.com/),
 
 [Heroku server](https://g-tower-server.herokuapp.com/api/player),
 
