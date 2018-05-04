@@ -15,8 +15,8 @@ A full-stack application that has an API, uses CRUD, and a library. Start of a D
 
 ### Screen Shots
 
-![Home Page](Tower-1.png)
-![Players Page](Tower-2.png)
+![Home Page](./static/Tower-1.png)
+![Players Page](./static/Tower-2.png)
 
 Links:
 
