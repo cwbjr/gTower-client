@@ -1,10 +1,18 @@
 # camp-chat
 
-> A Vue.js project
-
 ## Galvanize Tower
 
-In this project, you'll build a full-stack application that has an API, reads and writes data, and uses a library. The topic is up to you!
+A full-stack application that has an API, uses CRUD, and a library. Start of a D&D character portfolio to use by teh Game Master during campaign games.  
+
+### Technologies
+
+> * Vue.js
+> * Bootstrap 4
+> * Knex
+> * PostgreSQL
+> * Firebase - hosting frontend
+> * Heroku - hosting backend
+
 
 Links:
 
