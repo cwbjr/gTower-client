@@ -13,6 +13,10 @@ A full-stack application that has an API, uses CRUD, and a library. Start of a D
 > * Firebase - hosting frontend
 > * Heroku - hosting backend
 
+### Screen Shots
+
+![Home Page](Tower-1.png)
+![Players Page](Tower-2.png)
 
 Links:
 
